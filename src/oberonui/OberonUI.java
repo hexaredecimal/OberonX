@@ -75,55 +75,6 @@ public class OberonUI {
 		return column;
 	}
 
-	public static Frame addTiledFrame(String title, int flags, String... commands) {
-		// Header with commands
-		JPanel headerPanel = new JPanel();
-		headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-		// headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS)); // Use BoxLayout for horizontal arrangement
-		headerPanel.setBackground(Color.BLACK);
-		var cmds = makeCommands(title, commands);
-		for (String command : cmds) {
-
-			if (command.equals("_")) {
-				JLabel sep_lbl = new JLabel("| ");
-				sep_lbl.setForeground(Color.WHITE);
-				headerPanel.add(sep_lbl);
-				continue;
-			}
-
-			JLabel commandLabel = new JLabel(command + "  ");
-			var fnt = commandLabel.getFont();
-			fnt = new Font(fnt.getFontName(), fnt.getStyle(), 9);
-			commandLabel.setFont(fnt);
-			commandLabel.setForeground(Color.WHITE);
-			commandLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-			headerPanel.add(commandLabel);
-			commandLabel.addMouseListener(new CommandClickListener());
-		}
-
-		var comp = FrameFactory.getFrame(flags);
-		Window win = new Window(comp, cmds[0]);
-		win.add(headerPanel, BorderLayout.NORTH);
-
-		win.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (SwingUtilities.isMiddleMouseButton(e)) {
-					selectedFrame = win;
-					return;
-				}
-			}
-		});
-
-		JPanel lastColumn = (JPanel) columnContainer.getComponent(columnCount - 1);
-		win.setColumn(lastColumn);
-		lastColumn.add(win);
-		lastColumn.revalidate();
-		lastColumn.repaint();
-
-		return comp;
-	}
-
 
 	public static Window addTiledFrame(Window window) {
 		// Header with commands
