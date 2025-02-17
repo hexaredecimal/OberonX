@@ -4,6 +4,7 @@ import frames.Frame;
 import apps.CodeEditor;
 import apps.Editor;
 import apps.ImageViewer;
+import apps.SystemLog;
 import apps.WebBrowser;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -53,6 +54,11 @@ public class Window extends JPanel {
 			case "Code.edit" : {
 				OberonUI
 					.addTiledFrame(new CodeEditor())
+					.processArgs(args);
+			}
+			case "System.log": {
+				OberonUI
+					.addTiledFrame(new SystemLog())
 					.processArgs(args);
 			}
 			break;
