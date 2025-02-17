@@ -26,6 +26,6 @@ public class ImageViewer extends Window {
 	
 	@Override
 	public String[] getCommands() {
-		return new String[]{"Web.go", "Web.prev", "Web.forward"};
+		return new String[]{"Image.prev", "Image.next"};
 	}
 }

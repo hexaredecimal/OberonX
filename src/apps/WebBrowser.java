@@ -26,6 +26,6 @@ public class WebBrowser extends Window {
 	
 	@Override
 	public String[] getCommands() {
-		return new String[]{"Image.prev", "Image.next"};
+		return new String[]{"Web.go", "Web.prev", "Web.forward"};
 	}
 }
