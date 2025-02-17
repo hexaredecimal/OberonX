@@ -4,6 +4,9 @@ package oberonui;
  *
  * @author hexaredecimal
  */
+import frames.FrameFactory;
+import frames.Frame;
+import apps.SystemLog;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
@@ -13,10 +16,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.TextArea;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -111,11 +112,6 @@ public class OberonUI {
 					selectedFrame = win;
 					return;
 				}
-
-				if (selectedFrame != null && SwingUtilities.isLeftMouseButton(e)) {
-					//moveFrameToColumn(win.getColumn());
-					System.out.println("HERE: " + win.getName());
-				}
 			}
 		});
 
@@ -126,6 +122,54 @@ public class OberonUI {
 		lastColumn.repaint();
 
 		return comp;
+	}
+
+
+	public static Window addTiledFrame(Window window) {
+		// Header with commands
+		JPanel headerPanel = new JPanel();
+		headerPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+		// headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.X_AXIS)); // Use BoxLayout for horizontal arrangement
+		headerPanel.setBackground(Color.BLACK);
+		var cmds = makeCommands(window.getName(), window.getCommands());
+		for (String command : cmds) {
+
+			if (command.equals("_")) {
+				JLabel sep_lbl = new JLabel("| ");
+				sep_lbl.setForeground(Color.WHITE);
+				headerPanel.add(sep_lbl);
+				continue;
+			}
+
+			JLabel commandLabel = new JLabel(command + "  ");
+			var fnt = commandLabel.getFont();
+			fnt = new Font(fnt.getFontName(), fnt.getStyle(), 9);
+			commandLabel.setFont(fnt);
+			commandLabel.setForeground(Color.WHITE);
+			commandLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+			headerPanel.add(commandLabel);
+			commandLabel.addMouseListener(new CommandClickListener());
+		}
+
+		window.add(headerPanel, BorderLayout.NORTH);
+
+		window.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (SwingUtilities.isMiddleMouseButton(e)) {
+					selectedFrame = window;
+					return;
+				}
+			}
+		});
+
+		JPanel lastColumn = (JPanel) columnContainer.getComponent(columnCount - 1);
+		window.setColumn(lastColumn);
+		lastColumn.add(window);
+		lastColumn.revalidate();
+		lastColumn.repaint();
+
+		return window;
 	}
 
 	private static void closeFrame(Window framePanel) {
@@ -206,7 +250,7 @@ public class OberonUI {
 			var parent = getMouseEventParent(e);
 			if (selectedFrame != null && SwingUtilities.isLeftMouseButton(e)) {
 				moveFrameToColumn(parent.getColumn());
-				System.out.println("HERE: CommandClick: " + parent.getName());
+				// System.out.println("HERE: CommandClick: " + parent.getName());
 				return;
 			}
 
@@ -268,24 +312,9 @@ public class OberonUI {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(() -> {
 			OberonUI ui = new OberonUI();
-			var frame = (TextFrame) OberonUI.addTiledFrame("System.log", Frame.Text);
-			var te = frame.getTextArea();
-			te.setText(
-				"""
-    
-  Edit.open 
-  Edit.open ./Welcome.txt
-  Edit.open ~/sam.save
-
-  Image.show
-  Image.show ~/Pictures/ThunkPow.jpg 
-  Image.show ~/Pictures/Odin.png
-
-  Code.edit
-  Code.edit Main.java
-
-  Web.browse https://google.com
-      """);
+			OberonUI
+				.addTiledFrame(new SystemLog())
+				.processArgs("System.txt");
 		});
 	}
 }
