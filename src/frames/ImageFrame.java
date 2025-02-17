@@ -1,4 +1,4 @@
-package oberonui;
+package frames;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import oberonui.OberonUI;
 
 /**
  *
@@ -36,7 +37,7 @@ public class ImageFrame extends Frame {
 		loadImage(path);
 	}
 
-	public void loadImage(String path) {
+	private void loadImage(String path) {
 
 		if (path.startsWith("~")) {
 			String home = System.getProperty("user.home");
@@ -64,5 +65,12 @@ public class ImageFrame extends Frame {
 	@Override
 	public Component getCenterComponent() {
 		return new JScrollPane(label);
+	}
+
+	@Override
+	public void processArgs(String... args) {
+		for (var arg: args) {
+			this.loadImage(arg);
+		}
 	}
 }

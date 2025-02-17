@@ -1,4 +1,4 @@
-package oberonui;
+package frames;
 
 import java.awt.Component;
 import java.awt.TextArea;
@@ -10,6 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import oberonui.OberonUI;
 
 /**
  *
@@ -38,7 +39,7 @@ public class TextFrame extends Frame{
 			while ((line = br.readLine()) != null) {
 				content.append(line).append(System.lineSeparator());
 			}
-			textArea.setText(content.toString());
+			textArea.setText(content.toString().indent(2));
 		} catch (IOException e) {
 			textArea.setText("Unable to open file: " + e.getMessage());
 		}
@@ -53,5 +54,12 @@ public class TextFrame extends Frame{
 	@Override
 	public Component getCenterComponent() {
 		return new JScrollPane(textArea);
+	}
+
+	@Override
+	public void processArgs(String... args) {
+		for (var arg: args) {
+			this.loadFile(arg);
+		} 
 	}
 }

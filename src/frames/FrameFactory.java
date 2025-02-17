@@ -1,4 +1,4 @@
-package oberonui;
+package frames;
 
 /**
  *
@@ -12,6 +12,14 @@ public class FrameFactory {
 
 		if ((flags & Frame.Img) == Frame.Img) {
 			return new ImageFrame();
+		}
+
+		if ((flags & Frame.WebView) == Frame.WebView) {
+			return new WebViewer();
+		}
+		
+		if ((flags & Frame.CodeView) == Frame.CodeView) {
+			return new CodeFrame((flags & Frame.Editable) == Frame.Editable);
 		}
 
 		System.out.println("TODO: Exhaust the list of frames");

@@ -1,4 +1,4 @@
-package oberonui;
+package frames;
 
 import java.awt.Component;
 import java.awt.TextArea;
@@ -10,21 +10,33 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import oberonui.OberonUI;
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
 
 /**
  *
  * @author hexaredecimal
  */
-public class TextFrame extends Frame{
-	private JTextArea textArea ;
-	public TextFrame(boolean is_edit) {
-		textArea = new JTextArea();
+public class CodeFrame extends Frame{
+	private RSyntaxTextArea textArea ;
+	private RTextScrollPane editor_scroll;
+	
+	public CodeFrame(boolean is_edit) {
+		textArea = new RSyntaxTextArea();
 		textArea.setEditable(is_edit);
 		var c = new OberonUI.CommandClickListener();
 		textArea.addMouseListener(c);
+		editor_scroll = new RTextScrollPane(textArea);
+		editor_scroll.setLineNumbersEnabled(true); // Line numbers are enabled by default
+		editor_scroll.setFoldIndicatorEnabled(true);
+		editor_scroll.setIconRowHeaderEnabled(true);
+
+		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 	}
 
-	public void loadFile(String path) {
+	private void loadFile(String path) {
 		StringBuilder content = new StringBuilder();
 		
 		if (path.startsWith("~")) {
@@ -52,6 +64,13 @@ public class TextFrame extends Frame{
 	
 	@Override
 	public Component getCenterComponent() {
-		return new JScrollPane(textArea);
+		return editor_scroll;
+	}
+
+	@Override
+	public void processArgs(String... args) {
+		for (var arg: args) {
+			this.loadFile(arg);
+		}
 	}
 }
