@@ -1,0 +1,14 @@
+
+  Edit.open 
+  Edit.open ./Welcome.txt
+  Edit.open ~/sam.save
+
+  Image.show
+  Image.show ~/Pictures/ThunkPow.jpg 
+  Image.show ~/Pictures/Odin.png
+
+  Code.edit
+  Code.edit ./src/oberonui/OberonUI.java
+
+  Web.browse
+
