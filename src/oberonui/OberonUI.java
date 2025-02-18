@@ -43,8 +43,6 @@ public class OberonUI {
 		frame.setBackground(Color.WHITE);
 
 		frame.setSize(1200, 600);
-		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		//frame.setUndecorated(true);
 
 		// Container for columns
 		columnContainer = new JPanel(new GridLayout(1, columnCount));
@@ -74,7 +72,6 @@ public class OberonUI {
 		});
 		return column;
 	}
-
 
 	public static Window addTiledFrame(Window window) {
 		// Header with commands
@@ -123,15 +120,6 @@ public class OberonUI {
 		return window;
 	}
 
-	private static void closeFrame(Window framePanel) {
-		Container parent = framePanel.getParent();
-		if (parent != null) {
-			parent.remove(framePanel);
-			parent.revalidate();
-			parent.repaint();
-		}
-	}
-
 	private static void moveFrameToColumn(JPanel targetColumn) {
 		if (selectedFrame != null) {
 			Container parent = selectedFrame.getParent();
@@ -156,7 +144,6 @@ public class OberonUI {
 		}
 	}
 
-
 	private static String[] makeCommands(String title, String... commands) {
 		var list = new ArrayList<String>(List.of(title, "_", "System.close", "System.copy", "System.grow"));
 		if (commands.length > 0) {
@@ -173,24 +160,16 @@ public class OberonUI {
 		String[] cmds = command.split(" ");
 		var args = cmds.length > 1 ? Arrays.copyOfRange(cmds, 1, cmds.length) : new String[]{};
 		String cmd = cmds[0].trim();
-		if (cmd.equals("System.close")) {
-			closeFrame(parent);
-		} else {
-			executeCommand(cmd, args, parent);
-		}
-	}
-
-	private static void executeCommand(String command, String[] args, Window parent) {
-		parent.handleCommand(command, args);
+		parent.handleCommand(cmd, args);
 	}
 
 	public static Window getMouseEventParent(MouseEvent e) {
-			var obj = (Component) e.getSource();
-			Component parent = obj.getParent();
-			while (parent != null && !(parent instanceof Window)) {
-				parent = parent.getParent();
-			}
-			return (Window) parent;
+		var obj = (Component) e.getSource();
+		Component parent = obj.getParent();
+		while (parent != null && !(parent instanceof Window)) {
+			parent = parent.getParent();
+		}
+		return (Window) parent;
 	}
 
 	public static class CommandClickListener extends MouseAdapter {
@@ -209,7 +188,6 @@ public class OberonUI {
 				return;
 			}
 
-
 			var source = e.getSource();
 			e.consume();
 
@@ -218,7 +196,7 @@ public class OberonUI {
 			} else if (source instanceof JTextArea textArea) {
 				int x = e.getX();
 				int y = e.getY();
-				int caretPosition = textArea.viewToModel(new Point(x,y));
+				int caretPosition = textArea.viewToModel(new Point(x, y));
 				String text = textArea.getText();
 				String clickedWord = getWordAtPosition(text, caretPosition);
 				processClickedCommand(clickedWord, (Window) parent);
@@ -257,7 +235,19 @@ public class OberonUI {
 			}
 			return text.substring(start, end).trim();
 		}
-	
+
+	}
+
+	public static void toggleFullScreen(boolean full_screen) {
+		SwingUtilities.invokeLater(() -> {
+			if (full_screen) {
+				frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+				frame.setUndecorated(true);
+			} else {
+				frame.setExtendedState(JFrame.NORMAL);
+				frame.setUndecorated(false);
+			}
+		});
 	}
 
 	public static void main(String[] args) {
