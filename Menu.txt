@@ -1,21 +1,13 @@
 
-=== Welcome to OberonX ===
+=== User Menu ===
+Welcome to the user menu. This file contains a list of applications that 
+are available for you to use. You may edit this file and add your own
+applications if needed. 
 
-OberonX is a java based recreational programming environment, made to make
-java programming enjoyable. 
 
-# Help
+Code.edit ! A code editor
+Web.browse ! A cool web browser
 
-OberonX is command based. All text on the screen can be executed as a command. 
-To execute commands simply middle mouse click the command text.
 
-Commands usually have this form: Application . command. 
-E.g: Edit.open is one such command
-
-Command can have arguments passed to them. Arguments are a list of space separated words. 
-To mark the end of the arguments use any special character that is not part of the command.
-E.g: You can use !, ?, :, ; etc, but cannot use space, / or \. 
-
-# Online
-The OberonX project is hosted and developed on github. 
-
+* Games *
+// TODO: Comming Soon
