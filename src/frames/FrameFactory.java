@@ -7,7 +7,10 @@ package frames;
 public class FrameFactory {
 	public static Frame getFrame(int flags) {
 		if ((flags & Frame.Text) == Frame.Text) {
-			return new TextFrame((flags & Frame.Editable) == Frame.Editable);
+			return new TextFrame(
+				(flags & Frame.Editable) == Frame.Editable, 
+				(flags & Frame.Indent) == Frame.Indent 
+			);
 		}
 
 		if ((flags & Frame.Img) == Frame.Img) {
@@ -22,6 +25,10 @@ public class FrameFactory {
 			return new CodeFrame((flags & Frame.Editable) == Frame.Editable);
 		}
 
+		if ((flags & Frame.Basic) == Frame.Basic) {
+			return new BasicFrame();
+		}
+		
 		System.out.println("TODO: Exhaust the list of frames");
 		System.exit(0);
 		return null;

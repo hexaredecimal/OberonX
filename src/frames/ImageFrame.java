@@ -2,8 +2,6 @@ package frames;
 
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.TextArea;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -12,7 +10,6 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import oberonui.OberonUI;
 

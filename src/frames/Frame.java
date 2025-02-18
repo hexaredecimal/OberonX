@@ -16,6 +16,7 @@ public abstract class Frame {
 	public static int Editable = 1 << 4;
 	public static int CodeView = 1 << 5;
 	public static int Basic = 1 << 6;
+	public static int Indent = 1 << 7;
 	
 	private Component parent;
 
