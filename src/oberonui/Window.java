@@ -2,12 +2,15 @@ package oberonui;
 
 import frames.Frame;
 import apps.CodeEditor;
+import apps.DebugView;
 import apps.Editor;
+import apps.DigitalClock;
 import apps.ImageViewer;
 import apps.SystemLog;
 import apps.WebBrowser;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -33,6 +36,18 @@ public class Window extends JPanel {
 	
 	public void handleCommand(String command, String[] args) {
 		switch (command) {
+			case "Debug.show": {
+				OberonUI
+					.addTiledFrame(new DebugView())
+					.processArgs(args);
+			}
+			break;
+			case "DigitalClock.run": {
+				OberonUI
+					.addTiledFrame(new DigitalClock())
+					.processArgs(args);
+			}
+			break;
 			case "Edit.open": {
 				OberonUI
 					.addTiledFrame(new Editor())
@@ -56,14 +71,37 @@ public class Window extends JPanel {
 					.addTiledFrame(new CodeEditor())
 					.processArgs(args);
 			}
+			break;
 			case "System.log": {
 				OberonUI
 					.addTiledFrame(new SystemLog())
 					.processArgs(args);
 			}
 			break;
+			case "System.close": {
+				closeFrame();
+			}
+			break;
+			case "System.max": {
+				OberonUI.toggleFullScreen(true);
+			}
+			case "System.min": {
+				OberonUI.toggleFullScreen(false);
+			}
+			break;
 		}
 	}
+
+	private void closeFrame() {
+		Container parent = this.getParent();
+		if (parent != null) {
+			parent.remove(this);
+			parent.revalidate();
+			parent.repaint();
+		}
+		System.gc();
+	}
+
 
 	public void processArgs(String ... args) {
 		this.frame.processArgs(args);
@@ -81,6 +119,7 @@ public class Window extends JPanel {
 		return frame;
 	}
 
+	@Override
 	public final String getName() {
 		return name;
 	}
