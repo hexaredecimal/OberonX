@@ -13,6 +13,6 @@
 
 ## Showcase
 
-<img width="30%" src="./showcase/OberonX.png" />
+<img width="70%" src="./showcase/OberonX.png" />
 
 
