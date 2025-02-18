@@ -17,6 +17,7 @@ public class CodeEditor extends Window {
 	@Override
 	public void handleCommand(String command, String[] args) {
 		System.out.println("CodeEditor: " + command);
+		super.handleCommand(command, args);
 	}
 
 	@Override

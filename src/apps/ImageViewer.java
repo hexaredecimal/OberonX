@@ -17,6 +17,7 @@ public class ImageViewer extends Window {
 	@Override
 	public void handleCommand(String command, String[] args) {
 		System.out.println("ImageView: " + command);
+		super.handleCommand(command, args);
 	}
 
 	@Override

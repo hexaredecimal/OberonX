@@ -17,6 +17,7 @@ public class Editor extends Window {
 	@Override
 	public void handleCommand(String command, String[] args) {
 		System.out.println("Editor: " + command);
+		super.handleCommand(command, args);
 	}
 
 	@Override
