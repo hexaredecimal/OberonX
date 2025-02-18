@@ -1,14 +1,33 @@
 
-  Edit.open 
-  Edit.open ./Welcome.txt
-  Edit.open ~/sam.save
+Edit.open 
+Edit.open ./Welcome.txt
 
-  Image.show
-  Image.show ~/Pictures/ThunkPow.jpg 
-  Image.show ~/Pictures/Odin.png
+Image.show
+Image.show ~/Pictures/ThunkPow.jpg 
+Image.show ~/Pictures/Odin.png
 
-  Code.edit
-  Code.edit ./src/oberonui/OberonUI.java
+System.log ./Menu.txt
 
-  Web.browse
+System.max ! Maximize the main window
+System.min ! Minimize the main window
+
+DigitalClock.run
+Debug.show
+
+
+
+
+
+	 __   __   ___  __   __          
+	/   \ |__) |__  |__) /  \ |\ |    \_/ 
+	\__/ |__) |___ |  \ \__/ | \|    / \ 
+                ___________________________________
+                ███████████████████████
+                                         
+ 	A Recreational Programming
+	          Environment
+
+	(c) 2025 - Gama Sibusiso
+                                         
+
 
