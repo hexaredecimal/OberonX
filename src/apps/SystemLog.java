@@ -2,7 +2,6 @@ package apps;
 
 import frames.Frame;
 import frames.FrameFactory;
-import frames.ImageFrame;
 import oberonui.Window;
 
 /**
