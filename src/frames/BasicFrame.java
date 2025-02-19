@@ -1,13 +1,12 @@
 package frames;
 
 import elements.RenderPanel;
-import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Consumer;
+import oberonui.OberonUI;
 
 /**
  *
@@ -18,7 +17,8 @@ public class BasicFrame extends Frame implements ActionListener{
 	private Component frame;
 	public BasicFrame() {
 		this.frame = new RenderPanel();
-		((Container)this.frame).setLayout(new BorderLayout());
+		var c = new OberonUI.CommandClickListener();
+		this.frame.addMouseListener(c);
 	}
 
 
