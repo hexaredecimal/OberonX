@@ -2,16 +2,15 @@
 Edit.open 
 Edit.open ./Welcome.txt
 
-Image.show
-Image.show ~/Pictures/ThunkPow.jpg 
-Image.show ~/Pictures/Odin.png
+Image.show ~/Pictures/1728920913775.jpg
+Image.show ~/Pictures/DIY3.jpg
 
 System.log ./Menu.txt
 
 System.max ! Maximize the main window
 System.min ! Minimize the main window
 
-DigitalClock.run
+DigitalClock.show
 Debug.show
 
 
