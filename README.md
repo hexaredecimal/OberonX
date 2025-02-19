@@ -8,8 +8,8 @@
 - A clean, non disruptive monochrome, TUI inspired display
 - Oberon OS like command execution
 - Graphics support
-- Built-in applications
 - API for creating user applications
+- Dynamic `.jar` file loading
 
 ## Showcase
 
