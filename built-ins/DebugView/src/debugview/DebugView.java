@@ -1,4 +1,9 @@
-package apps;
+package debugview;
+
+/**
+ *
+ * @author hexaredecimal
+ */
 
 import frames.BasicFrame;
 import frames.Frame;
@@ -99,3 +104,4 @@ public class DebugView extends Window {
 	}
 
 }
+
