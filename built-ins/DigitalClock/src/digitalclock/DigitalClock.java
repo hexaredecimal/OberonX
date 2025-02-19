@@ -1,4 +1,9 @@
-package apps;
+package digitalclock;
+
+/**
+ *
+ * @author hexaredecimal
+ */
 
 import frames.BasicFrame;
 import frames.Frame;
@@ -32,7 +37,8 @@ public class DigitalClock extends Window {
 		var min = _m < 10 ? "0" + _m : "" + _m;
 		var sec = _s < 10 ? "0" + _s : "" + _s;
 
-		JLabel time = new JLabel(String.format("%s:%s:%s", hour, min, sec));
+		var amPm = _h < 12 ? "AM" : "PM";
+		JLabel time = new JLabel(String.format("%s:%s:%s %s", hour, min, sec, amPm));
 		var font = time.getFont(); 
 		time.setFont(new Font(font.getName(), font.getStyle(), 20));
 		comp.add(time);
@@ -48,7 +54,8 @@ public class DigitalClock extends Window {
 			var _hour = h < 10 ? "0" + h : "" + h;
 			var _min = m < 10 ? "0" + m : "" + m;
 			var _sec = s < 10 ? "0" + s : "" + s;
-			time.setText(String.format("%s:%s:%s", _hour, _min, _sec));
+			var _amPm = h < 12 ? "AM" : "PM";
+			time.setText(String.format("%s:%s:%s %s", _hour, _min, _sec, _amPm));
 		});
 	}
 
@@ -69,3 +76,4 @@ public class DigitalClock extends Window {
 	}
 
 }
+
