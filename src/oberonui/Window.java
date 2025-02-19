@@ -10,6 +10,9 @@ import dynamics.JarFileLoader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -34,6 +37,12 @@ public class Window extends JPanel {
 
 	
 	public void handleCommand(String command, String[] args) {
+		if (OberonUI.hasAlias(command)) {
+			execFromAlias(OberonUI.getAlias(command), args);
+			return;
+		}
+
+		
 		switch (command) {
 			case "Debug.show": {
 				OberonUI
@@ -117,6 +126,22 @@ public class Window extends JPanel {
 
 	public String[] getCommands() {
 		return new String[]{};
+	}
+
+	private void execFromAlias(String alias, String[] args) {
+		var splits = alias.replaceAll("\"", "").split(" ");
+		var command = splits[0]; 
+
+		List<String> _args = new ArrayList<>();
+		for (int i = 1; i < splits.length; i++) {
+			_args.add(splits[i]);
+		}
+
+		_args.addAll(Arrays.asList(args));
+
+		args = _args.toArray(String[]::new);
+		System.out.println("Alias: " + command + " " + _args);
+		handleCommand(command, args);
 	}
 
 }
