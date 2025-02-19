@@ -1,13 +1,12 @@
 package oberonui;
 
 import frames.Frame;
-import apps.CodeEditor;
 import apps.DebugView;
 import apps.Editor;
 import apps.DigitalClock;
-import apps.ImageViewer;
 import apps.SystemLog;
 import apps.WebBrowser;
+import dynamics.JarFileLoader;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
@@ -54,21 +53,9 @@ public class Window extends JPanel {
 					.processArgs(args);
 			}
 			break;
-			case "Image.show": {
-				OberonUI
-					.addTiledFrame(new ImageViewer())
-					.processArgs(args);
-			}
-			break;
 			case "Web.browse": {
 				OberonUI
 					.addTiledFrame(new WebBrowser())
-					.processArgs(args);
-			}
-			break;
-			case "Code.edit" : {
-				OberonUI
-					.addTiledFrame(new CodeEditor())
 					.processArgs(args);
 			}
 			break;
@@ -89,9 +76,13 @@ public class Window extends JPanel {
 				OberonUI.toggleFullScreen(false);
 			}
 			break;
+			case "System.run": {
+				JarFileLoader.loadAndRunJarFile(args);
+			}
 		}
 	}
 
+	
 	private void closeFrame() {
 		Container parent = this.getParent();
 		if (parent != null) {
