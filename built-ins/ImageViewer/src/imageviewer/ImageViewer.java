@@ -2,6 +2,7 @@ package imageviewer;
 
 import frames.Frame;
 import frames.FrameFactory;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.io.File;
@@ -32,6 +33,7 @@ public class ImageViewer extends Window {
 
 		var scroll = new JScrollPane(label);
 		var cont = (Container) (this.getFrame().getCenterComponent());
+		cont.setLayout(new BorderLayout());
 		cont.add(scroll);
 	}
 
