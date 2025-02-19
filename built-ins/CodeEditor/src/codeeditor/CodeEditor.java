@@ -37,8 +37,6 @@ public class CodeEditor extends Window {
 		editor_scroll.setIconRowHeaderEnabled(true);
 		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
 
-		textArea.setText("Dynmically loaded");
-
 		var frame = (BasicFrame) this.getFrame();
 		var cont = (Container) frame.getCenterComponent();
 		cont.setLayout(new BorderLayout());
