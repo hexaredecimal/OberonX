@@ -2,5 +2,10 @@
 
 set -e
 # Compile the OberonX System
-ant
-./compile_apps.sh
+echo "Compiling: OberonX"
+time ant >>/dev/null
+echo "OberonX: Done"
+
+echo "Compiling: Apps"
+time ./compile_apps.sh
+echo "Apps: Done"

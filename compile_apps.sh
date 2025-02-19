@@ -6,7 +6,7 @@ find . -maxdepth 1 -type d ! -name "." | while read dir; do
   echo "Compling: $dir"
   cd $dir
   # Compile the app
-  ant
+  ant >>/dev/null
   cp -r dist/*.jar dist/lib ../../apps
   cd ..
 done
