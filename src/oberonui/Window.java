@@ -1,9 +1,6 @@
 package oberonui;
 
 import frames.Frame;
-import apps.DebugView;
-import apps.Editor;
-import apps.DigitalClock;
 import apps.SystemLog;
 import apps.WebBrowser;
 import dynamics.JarFileLoader;
@@ -44,24 +41,6 @@ public class Window extends JPanel {
 
 		
 		switch (command) {
-			case "Debug.show": {
-				OberonUI
-					.addTiledFrame(new DebugView())
-					.processArgs(args);
-			}
-			break;
-			case "DigitalClock.run": {
-				OberonUI
-					.addTiledFrame(new DigitalClock())
-					.processArgs(args);
-			}
-			break;
-			case "Edit.open": {
-				OberonUI
-					.addTiledFrame(new Editor())
-					.processArgs(args);
-			}
-			break;
 			case "Web.browse": {
 				OberonUI
 					.addTiledFrame(new WebBrowser())
