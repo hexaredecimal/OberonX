@@ -1,23 +1,13 @@
 package frames;
 
 import elements.RenderPanel;
-import java.awt.Color;
+import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.SwingConstants;
-import oberonui.OberonUI;
 
 /**
  *
@@ -25,9 +15,10 @@ import oberonui.OberonUI;
  */
 public class BasicFrame extends Frame implements ActionListener{
 
-	private RenderPanel frame;
+	private Component frame;
 	public BasicFrame() {
 		this.frame = new RenderPanel();
+		((Container)this.frame).setLayout(new BorderLayout());
 	}
 
 
@@ -37,7 +28,9 @@ public class BasicFrame extends Frame implements ActionListener{
 	}
 
 	public void onUpdate(Consumer<Graphics> fx) {
-		this.frame.onUpdate(fx);
+		if (this.frame instanceof RenderPanel render) {
+			render.onUpdate(fx);
+		}
 	}
 
 	@Override
@@ -47,5 +40,10 @@ public class BasicFrame extends Frame implements ActionListener{
 
 	@Override
 	public void processArgs(String... args) {
+	}
+
+	@Override
+	public void setCenterComponent(Component c) {
+		this.frame = c;
 	}
 }

@@ -68,4 +68,8 @@ public class TextFrame extends Frame {
 			this.loadFile(arg);
 		}
 	}
+
+	@Override
+	public void setCenterComponent(Component c) {
+	}
 }

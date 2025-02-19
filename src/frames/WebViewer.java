@@ -89,4 +89,8 @@ public class WebViewer extends Frame {
 	@Override
 	public void processArgs(String... args) {
 	}
+
+	@Override
+	public void setCenterComponent(Component c) {
+	}
 }
