@@ -4,8 +4,6 @@ package oberonui;
  *
  * @author hexaredecimal
  */
-import frames.FrameFactory;
-import frames.Frame;
 import apps.SystemLog;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,9 +16,14 @@ import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -28,6 +31,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
+import org.ini4j.Ini;
 
 public class OberonUI {
 
@@ -35,6 +39,7 @@ public class OberonUI {
 	private static JPanel columnContainer;
 	private static int columnCount = 2;
 	private static Window selectedFrame = null;
+	private static HashMap<String, String> aliases = new HashMap();
 
 	public OberonUI() {
 		frame = new JFrame("Oberon UI in Java");
@@ -54,6 +59,8 @@ public class OberonUI {
 		//frame.add(new JScrollPane(columnContainer), BorderLayout.CENTER);
 		frame.add(columnContainer, BorderLayout.CENTER);
 		frame.setVisible(true);
+
+		loadConfig();
 	}
 
 	private JPanel createColumn() {
@@ -172,6 +179,27 @@ public class OberonUI {
 		return (Window) parent;
 	}
 
+	private void loadConfig() {
+		try {
+			Ini ini = new Ini(new FileReader("./config/conf.ini"));
+			
+			var _aliases = ini.get("aliases");
+			for (var entry : _aliases.entrySet()) {
+				aliases.put(entry.getKey(), entry.getValue());
+			}
+		} catch (IOException ex) {
+			Logger.getLogger(OberonUI.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	public static boolean hasAlias(String command) {
+		return aliases.containsKey(command);
+	}
+
+	public static String getAlias(String command) {
+		return aliases.get(command);
+	}
+	
 	public static class CommandClickListener extends MouseAdapter {
 
 		@Override
