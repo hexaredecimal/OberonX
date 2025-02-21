@@ -58,6 +58,7 @@ public class ImageViewer extends Window {
 			}
 			label.setIcon(icon);
 		} catch (IOException ex) {
+			System.out.println("Error: Loading image file " + path);
 			label.setText(ex.getMessage());
 		}
 	}
