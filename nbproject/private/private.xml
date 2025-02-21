@@ -5,7 +5,9 @@
         <group>
             <file>file:/home/hexaredecimal/Projects/OberonX/System.txt</file>
             <file>file:/home/hexaredecimal/Projects/OberonX/config/conf.ini</file>
+            <file>file:/home/hexaredecimal/Projects/OberonX/src/oberonui/OberonUI.java</file>
             <file>file:/home/hexaredecimal/Projects/OberonX/src/oberonui/Window.java</file>
+            <file>file:/home/hexaredecimal/Projects/OberonX/Menu.txt</file>
         </group>
     </open-files>
 </project-private>
