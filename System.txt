@@ -5,6 +5,9 @@ Edit.open ./Welcome.txt
 Image.show ~/Pictures/1728920913775.jpg
 Image.show ~/Pictures/DIY3.jpg
 
+Dir.ls
+Dir.ls ~/
+
 System.log ./Menu.txt
 
 System.max ! Maximize the main window
@@ -13,6 +16,7 @@ System.min ! Minimize the main window
 DigitalClock.show
 Debug.show
 
+System.exit
 
 
 
