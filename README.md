@@ -1,4 +1,9 @@
-# OberonX
+```
+ ▗▄▖ ▗▖   ▗▞▀▚▖ ▄▄▄ ▄▄▄  ▄▄▄▄ ▗▖  ▗▖
+▐▌ ▐▌▐▌   ▐▛▀▀▘█   █   █ █   █ ▝▚▞▘ 
+▐▌ ▐▌▐▛▀▚▖▝▚▄▄▖█   ▀▄▄▄▀ █   █  ▐▌  
+▝▚▄▞▘▐▙▄▞▘                    ▗▞▘▝▚▖
+```
 
 ## What is OberonX
 > OberonX is a java based programming environment inspired by the Oberon Operating System, created specially 
