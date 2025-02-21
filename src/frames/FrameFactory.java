@@ -13,9 +13,6 @@ public class FrameFactory {
 			);
 		}
 
-		if ((flags & Frame.WebView) == Frame.WebView) {
-			return new WebViewer();
-		}
 		
 		if ((flags & Frame.Basic) == Frame.Basic) {
 			return new BasicFrame();
