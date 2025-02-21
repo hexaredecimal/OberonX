@@ -14,6 +14,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileReader;
@@ -47,7 +48,12 @@ public class OberonUI {
 		frame.setLayout(new BorderLayout());
 		frame.setBackground(Color.WHITE);
 
-		frame.setSize(1200, 600);
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setUndecorated(true);
+
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		var dym = toolkit.getScreenSize();
+		frame.setSize(dym);
 
 		// Container for columns
 		columnContainer = new JPanel(new GridLayout(1, columnCount));
@@ -208,7 +214,6 @@ public class OberonUI {
 			var parent = getMouseEventParent(e);
 			if (selectedFrame != null && SwingUtilities.isLeftMouseButton(e)) {
 				moveFrameToColumn(parent.getColumn());
-				// System.out.println("HERE: CommandClick: " + parent.getName());
 				return;
 			}
 
@@ -246,6 +251,8 @@ public class OberonUI {
 			while (start > 0
 				&& (Character.isLetterOrDigit(text.charAt(start - 1))
 				|| (text.charAt(start - 1) == '.')
+				|| (text.charAt(start - 1) == '_')
+				|| (text.charAt(start - 1) == '-')
 				|| (text.charAt(start - 1) == '/')
 				|| (text.charAt(start - 1) == '~')
 				|| (text.charAt(start - 1) == ':')
@@ -254,11 +261,13 @@ public class OberonUI {
 			}
 			while (end < text.length()
 				&& (Character.isLetterOrDigit(text.charAt(end))
-				|| (text.charAt(end) == '.'))
+				|| (text.charAt(end) == '.')
+				|| (text.charAt(end) == '-')
+				|| (text.charAt(end) == '_')
 				|| (text.charAt(end) == ' ')
 				|| (text.charAt(end) == '/')
 				|| (text.charAt(end) == ':')
-				|| (text.charAt(end) == '~')) {
+				|| (text.charAt(end) == '~'))) {
 				end++;
 			}
 			return text.substring(start, end).trim();
