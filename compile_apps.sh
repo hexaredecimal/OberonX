@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir -p apps
 cd ./built-ins/
 
 find . -maxdepth 1 -type d ! -name "." | while read dir; do
