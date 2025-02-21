@@ -2,7 +2,6 @@ package oberonui;
 
 import frames.Frame;
 import apps.SystemLog;
-import apps.WebBrowser;
 import dynamics.JarFileLoader;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,12 +40,9 @@ public class Window extends JPanel {
 
 		
 		switch (command) {
-			case "Web.browse": {
-				OberonUI
-					.addTiledFrame(new WebBrowser())
-					.processArgs(args);
-			}
-			break;
+			case "System.exit":
+				System.exit(0);
+				break;
 			case "System.log": {
 				OberonUI
 					.addTiledFrame(new SystemLog())
